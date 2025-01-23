@@ -19,7 +19,7 @@
 
         public override string ToString()
         {
-            return name;
+            return String.Format($"{Name} - {Year} - {Major}");
         }
     }
 }

@@ -19,7 +19,9 @@
 
         public void AddStudent(Student student)
         {
-            // todo
+            // todo - make sure this student isn't already in the roster & print confirmation message
+            // implementing the rest here only to allow for testing with the adding file support demo later
+            students.Add(student);
         }
 
         public Student AddStudent()
