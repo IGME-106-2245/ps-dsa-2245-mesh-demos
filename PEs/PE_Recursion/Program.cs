@@ -58,14 +58,40 @@
             Console.WriteLine($"Contains 42 in numsRandom: {Contains(numsRandom, 42)}");
             Console.WriteLine();
 
-            /*
             // Prompt the user for a word to test string methods
             Console.WriteLine("Enter a word:");
             word = Console.ReadLine();
-            Console.WriteLine($"Is {word} a palindrome? {IsPalindrome(word)}");
+//            Console.WriteLine($"Is {word} a palindrome? {IsPalindrome(word)}");
             Console.WriteLine($"Reverse of {word} is {Reverse(word)}");
-            */
         }
+
+        /*
+            *base case - 1 letter*
+            Reverse(E)      ---> return E (i.e., the full word)
+
+            *recursive case - +1 letter*
+            *state change - call without the last letter*
+            Reverse(EM)     ---> return M + Reverse(E)
+            Reverse(EMP)    ---> return P + Reverse(EM)
+            Reverse(EMPT)   ---> return T + Reverse(EMP)
+            Reverse(EMPTY)  ---> return Y + Reverse(EMPT)
+         */
+        static string Reverse( string word )
+        {
+            // base case - 1 letter
+            if(word == null || word.Length <= 1)
+            {
+                return word;
+            }
+            // recursive case - +1 letter
+            else
+            {
+                // return last letter + Reverse(rest of the string)
+                // state change - call without the last letter
+                return word[word.Length - 1] + Reverse(word.Substring(0, word.Length - 1));
+            }
+        }
+
 
         static void PrintArray(string label, int[] nums)
         {
