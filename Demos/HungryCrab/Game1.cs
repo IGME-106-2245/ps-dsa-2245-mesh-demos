@@ -68,35 +68,40 @@ namespace HungryCrab
                 crabSpeed += 25;
             }
 
+            #region direction updates
             if (currentKBState.IsKeyDown(Keys.W))
             {
-                crabDir.Y = -1;
+                crabDir.Y--;
             }
 
             if (currentKBState.IsKeyDown(Keys.S))
             {
-                crabDir.Y = 1;
+                crabDir.Y++;
             }
 
             if (currentKBState.IsKeyDown(Keys.A))
             {
-                crabDir.X = -1;
+                crabDir.X--;
             }
 
             if (currentKBState.IsKeyDown(Keys.D))
             {
-                crabDir.X = 1;
+                crabDir.X++;
+            }
+            #endregion
+
+            if (crabDir != Vector2.Zero)
+            {
+                crabDir.Normalize();
             }
 
-            //crabDir.Normalize();
+            // Use direction & speed to calc velocity (pixels/sec)
+            Vector2 velocity = crabDir * crabSpeed;
 
-            // Use direction & speed to calc velocity
-            Vector2 velocity = 
-                crabDir * 
-                (crabSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds);
+            Vector2 travelDist = velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            crabRect.X += (int)velocity.X;
-            crabRect.Y += (int)velocity.Y;
+            crabRect.X += (int)travelDist.X;
+            crabRect.Y += (int)travelDist.Y;
 
             prevKBState = currentKBState;
 
