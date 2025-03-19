@@ -50,7 +50,7 @@ namespace PE_MG_Buttons
                     "Random BG",
                     font,
                     Color.Purple));
-            buttons[0].OnButtonClick += this.RandomizeBackground;
+            buttons[0].OnLeftButtonClick += this.RandomizeBackground;
 
             // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             // TODO: Add your additional button setup code here!
