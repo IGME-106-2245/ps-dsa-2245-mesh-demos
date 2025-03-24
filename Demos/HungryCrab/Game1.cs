@@ -22,6 +22,8 @@ namespace HungryCrab
         private Vector2 titleLoc = Vector2.Zero;
         private Vector2 posUILoc;
 
+        private Rectangle window;
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -34,6 +36,7 @@ namespace HungryCrab
             // TODO: Add your initialization logic here
 
             base.Initialize();
+            window = new Rectangle(0, 0, 800, 600);
         }
 
         protected override void LoadContent()
@@ -102,6 +105,20 @@ namespace HungryCrab
 
             crabRect.X += (int)travelDist.X;
             crabRect.Y += (int)travelDist.Y;
+
+
+            // screen wrap if we're outside the window
+
+            if(!crabRect.Intersects(window))
+            {
+                // if outside the left side, teleport to the right
+                if(crabRect.Right < window.Left)
+                {
+                    crabRect.X = window.Right - crabRect.Width;
+                }
+            }
+
+
 
             prevKBState = currentKBState;
 
