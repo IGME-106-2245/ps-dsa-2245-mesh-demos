@@ -145,6 +145,9 @@ namespace HungryCrab
                 posUILoc,
                 Color.Black);
 
+            //Singleton tmp = new Singleton();
+            _spriteBatch.DrawString(defaultFont, Singleton.Instance.ToString(), new Vector2(200, 200), Color.Black);
+
             _spriteBatch.End();
 
             base.Draw(gameTime);
